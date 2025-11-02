@@ -3,7 +3,6 @@ const path = require('path');
 
 const sourceDir = path.join(__dirname, '..', 'out');
 const targetDir = path.join(__dirname, '..', 'docs');
-const BASE_PATH = '/pawmatcher.github.io';
 
 // Remove existing docs directory if it exists
 if (fs.existsSync(targetDir)) {
@@ -30,25 +29,23 @@ function copyRecursiveSync(src, dest) {
     // Check if it's an HTML or CSS file that needs path fixing
     if (src.endsWith('.html')) {
       let content = fs.readFileSync(src, 'utf8');
-      // Fix paths: replace absolute paths with relative paths for GitHub Pages
-      // Escape the basePath for regex
-      const escapedBasePath = BASE_PATH.replace(/\//g, '\\/');
-      
-      // Replace all instances of /pawmatcher.github.io/ with ./ for relative paths
-      content = content.replace(new RegExp(escapedBasePath + '/', 'g'), './');
+      // Convert absolute paths to relative paths for GitHub Pages
+      // Replace /_next/ with ./_next/ and /filename with ./filename
+      // Match href="/path" and replace with href="./path"
+      content = content.replace(/href="\/([^"]+)"/g, 'href="./$1"');
+      // Match src="/path" and replace with src="./path"
+      content = content.replace(/src="\/([^"]+)"/g, 'src="./$1"');
+      // Also handle src='/path' format
+      content = content.replace(/src='\/([^']+)'/g, "src='./$1'");
       
       fs.writeFileSync(dest, content, 'utf8');
     } else if (src.endsWith('.css')) {
       let content = fs.readFileSync(src, 'utf8');
-      // For CSS files, paths are relative to the CSS file location
-      // CSS is at docs/_next/static/css/ so _next/static/media/ should be ../media/
-      const escapedBasePath = BASE_PATH.replace(/\//g, '\\/');
-      
-      // Replace font URLs: /pawmatcher.github.io/_next/static/media/ with ../media/
-      content = content.replace(
-        new RegExp(escapedBasePath + '/_next/static/media/', 'g'),
-        '../media/'
-      );
+      // For CSS files, font URLs are relative to CSS file location
+      // CSS is at docs/_next/static/css/ so /_next/static/media/ should be ../media/
+      content = content.replace(/url\(\/_next\/static\/media\//g, 'url(../media/');
+      // Also fix any other absolute paths in CSS
+      content = content.replace(/url\(\//g, 'url(../');
       
       fs.writeFileSync(dest, content, 'utf8');
     } else {

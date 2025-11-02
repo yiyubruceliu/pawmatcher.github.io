@@ -7,13 +7,13 @@ export function About() {
       name: "Yi-Yu (Bruce) Liu",
       role: "Tech Founder",
       color: "bg-[#321478]",
-      image: assetPath("/bruce.jpg"),
+      image: assetPath("/Bruce.jpg"),
     },
     {
       name: "Iva Bosotina",
       role: "Operations Founder",
       color: "bg-[#6450b4]",
-      image: assetPath("/iva.jpg"),
+      image: assetPath("/Iva.jpg"),
     },
   ]
 

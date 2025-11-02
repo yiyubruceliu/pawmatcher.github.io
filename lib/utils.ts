@@ -5,9 +5,7 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
 }
 
-// Helper to add basePath for GitHub Pages
-const BASE_PATH = '/pawmatcher.github.io'
-
+// Helper for asset paths (no basePath needed for GitHub Pages docs folder)
 export function assetPath(path: string): string {
-  return `${BASE_PATH}${path}`
+  return path
 }
