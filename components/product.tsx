@@ -1,3 +1,5 @@
+import { assetPath } from "@/lib/utils"
+
 export default function Product() {
   return (
     <section className="bg-white py-16 md:py-24">
@@ -16,7 +18,7 @@ export default function Product() {
               {/* Phone Frame */}
               <div className="relative h-[600px] w-[300px] overflow-hidden rounded-[3rem] border-8 border-[#321478] bg-[#d7d2f0] shadow-2xl">
                 <video className="h-full w-full object-cover" autoPlay loop muted playsInline>
-                  <source src="/phone-demo.mp4" type="video/mp4" />
+                  <source src={assetPath("/phone-demo.mp4")} type="video/mp4" />
                 </video>
               </div>
               {/* Decorative paw */}

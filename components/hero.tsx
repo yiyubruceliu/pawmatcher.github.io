@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button"
 import { ArrowRight } from "lucide-react"
+import { assetPath } from "@/lib/utils"
 
 export function Hero() {
   return (
@@ -50,10 +51,10 @@ export function Hero() {
       </div>
 
       <div className="absolute -bottom-10 -left-10 opacity-20">
-        <img src="/paw-violet.svg" alt="" width={200} height={200} />
+        <img src={assetPath("/paw-violet.svg")} alt="" width={200} height={200} />
       </div>
       <div className="absolute -right-10 -top-10 opacity-20">
-        <img src="/paw-white.svg" alt="" width={200} height={200} />
+        <img src={assetPath("/paw-white.svg")} alt="" width={200} height={200} />
       </div>
     </section>
   )

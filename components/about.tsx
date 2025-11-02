@@ -1,4 +1,5 @@
 import { Card } from "@/components/ui/card"
+import { assetPath } from "@/lib/utils"
 
 export function About() {
   const team = [
@@ -6,13 +7,13 @@ export function About() {
       name: "Yi-Yu (Bruce) Liu",
       role: "Tech Founder",
       color: "bg-[#321478]",
-      image: "/bruce.jpg",
+      image: assetPath("/bruce.jpg"),
     },
     {
       name: "Iva Bosotina",
       role: "Operations Founder",
       color: "bg-[#6450b4]",
-      image: "/iva.png",
+      image: assetPath("/iva.jpg"),
     },
   ]
 
