@@ -2,7 +2,7 @@ export function Stats() {
   const stats = [
     {
       number: "400,000+",
-      label: "Dogs in shelters across Italy, Spain, France & Czech Republic",
+      label: "Dogs in shelters across a few selected European countries",
       color: "bg-[#321478]",
     },
     {
